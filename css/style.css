@@ -1,28 +1,116 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: rgb(0,0,0);
-    color: rgb(255,255,255);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgb(63, 62, 62);
+  color: rgb(255, 255, 255);
+}
+
+h1 {
+  color: rgb(255,255,0)
+}
+
+h2 {
+  color: rgb(17, 155, 241)
+}
+
+header {
+  text-align: center;
+}
+
+/* .instructions {
+  line-height: 26pt;
+  font-size: 30px;
+
+} */
+
+.intro {
+  background-color: rgb(255,0,0);
+  color: rgb(255,255,255);
+  cursor: pointer;
+  text-align: center;
+  font-size: 40px;
+  margin: auto;
+  display: block;
+}
+
+.timer-countdown {
+  visibility: hidden;
+  height: 30px;
+  width: 300px;
+  position: relative;
+  border: 1px solid black;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  .progress-inner {
+    width: 100%;
+    height: 100%;
+    transition: background 0.2s;
+    top: 0;
+    left: 0;
+    &.blue {
+      background: blue;
+    }
+  }
 }
 
 .memory-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+  max-width: 700px;
+  visibility: hidden
 }
 
 .card {
-    flex: 6;
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.front {
+  background-size: cover;
+  background-image: var('.images');
+}
+
+.back {
+  background-image: url('https://images.pexels.com/photos/20816519/pexels-photo-20816519/free-photo-of-dog-lying-down-and-cat-sitting.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-size: cover;
 }
 
 .hide {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .hidden {
-    visibility: hidden;
+  visibility: hidden;
 }
 
+.images {
+  visibility: hidden;
+}
