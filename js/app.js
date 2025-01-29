@@ -1,85 +1,212 @@
 /*-------------- Constants -------------*/
 
+const cards = [
+    {
+        name: "Pet1",
+        src: "./assets/Pet1.jpg",
+        // id: [1,16],
+        alt: "alt"
+    },
+    {
+        name: "Pet2",
+        src: "./assets/Pet2.jpg",
+        // id: [2, 17],
+        alt: "alt"
+    },
+    {
+        name: "Pet3",
+        src: "./assets/Pet3.jpg",
+        // id: [3, 18],
+        alt: "alt"
+    },
+    {
+        name: "Pet4",
+        src: "./assets/Pet4.jpg",
+        // id: [4, 19],
+        alt: "alt"
+    },
+    {
+        name: "Pet5",
+        src: "./assets/Pet5.jpg",
+        // id: [5, 20],
+        alt: "alt"
+    },
+    {
+        name: "Pet6",
+        src: "./assets/Pet6.jpg",
+        // id: [6, 21],
+        alt: "alt"
+    },
+    {
+        name: "Pet7",
+        src: "./assets/Pet7.jpg",
+        // id: [7, 22],
+        alt: "alt"
+    },
+    {
+        name: "Pet8",
+        src: "./assets/Pet8.jpg",
+        // id: [8, 23],
+        alt: "alt"
+    },
+    {
+        name: "Pet9",
+        src: "./assets/Pet9.jpg",
+        // id: [9, 24],
+        alt: "alt"
+    },
+    {
+        name: "Pet10",
+        src: "./assets/Pet10.jpg",
+        // id: [10, 25],
+        alt: "alt"
+    },
+    {
+        name: "Pet11",
+        src: "./assets/Pet11.jpg",
+        // id: [11, 26],
+        alt: "alt"
+    },
+    {
+        name: "Pet12",
+        src: "./assets/Pet12.jpg",
+        // id: [12, 27],
+        alt: "alt"
+    },
+    {
+        name: "Pet13",
+        src: "./assets/Pet13.jpg",
+        // id: [13, 28],
+        alt: "alt"
+    },
+    {
+        name: "Pet14",
+        src: "./assets/Pet14.jpg",
+        // id: [14, 29],
+        alt: "alt"
+    },
+    {
+        name: "Pet15",
+        src: "./assets/Pet15.jpg",
+        alt: "alt"
+    }  
+]
+
+const cardPickList = [...cards, ...cards]
+const cardCount = cardPickList.length
+
+
 
 /*---------- Variables (state) ---------*/
 
 let flippedCard = [];
 let win;
 let matchedCards = [];
-let back;
-let timer;
+let noMatch = []
 
 /*----- Cached Element References  -----*/
 
-const cardsEl = document.querySelectorAll('.memory-cards')
-const cards = document.querySelectorAll('.card')
+const cardEls = document.querySelectorAll('.card')
+const frontEls = document.querySelectorAll('.front')
 const messageEl = document.querySelectorAll('.msg')
 const instEl = document.querySelectorAll('.instructions')
 const startBut = document.getElementById('start')
+const timeLeft = document.getElementById("timer-countdown-inner-blue")
+const countdownBar = document.getElementById("timer.countdown")
+
+
 
 /*-------------- Functions -------------*/
 
 const init = () => {
     flippedCard = [],
-    back = 
     win = false,
     matchedCards = []
+    noMatch = []
     
 } 
+init()
 
+const handleClick = () => {
+    shuffleCards()
+    flipCard()
+
+}
 
 const shuffleCards = () => {
-    const cardArray = Array.from(cards)
-    for(let i=cards.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1))
-        [cards[i], cards[j] = cards[j], cards[i] ]
+    setTimeout(() => {
+        for(let i = 0; i < cardCount; i++) {
+            const randomIndex = Math.floor(Math.random() * cardPickList.length)
+            const card = cardPickList[randomIndex]
+            const front = buildFront(card)
+        } 
+    }, 8000)
+    const buildFront = (card) => {
+        frontEls.forEach((card =>
+            card.style.backgroundImage = `${card}`
+        ))
     }
-    shuffleCards(cardArray)
-
-    cardArray.forEach(card => {
-        cardContainer.appendChild(card);
-        card.style.display = "visible"
-    })
 }
 
 
 const flipCard = () => {
-    if(flippedCard.length < 2 && !this.classList.contains('flipped')) {
-        this.classList.add('flipped');
+    this.classList.add('is-flipped')
+    if(flippedCard.length < 2 && !this.classList.contains('is-flipped')) {
+        this.classList.add('is-flipped');
         flippedCard.push(this);
+        runTimer()
 
         if(flippedCard.length === 2) {
             checkForMatch();
+            clearInterval(timer)
         }
     }
 }
 
 const checkForMatch = () => {
-    const card1 = firstFlip[0];
-    const card2 = firstFlip[2];
+    const card1 = flippedCard[0];
+    const card2 = flippedCard[2];
 
-    if(card1.data-value === card2.data-value) {
-        card1.classList.add["matched"];
-        card2.classList.add["matched"];
-
+    if(card1.name === card2.name) {
+        card1.push(matchedCards)
+        card2.push(matchedCards);
+        checkForWinner()
+    }
+    if(card1.name !== card2.name) {
+        card1.push(noMatch);
+        card2.push(noMatch);
+    }
+ }
+ 
+const runTimer = () => {
+    var startTimer = setInterval(barCount,5);
+    const barCount = () => {
+        if(timeLeft.clientWidth < countdownBar.clientWidth) {
+            timeLeft.style.width = timeLeft.clientWidth + 1 + 'px'
+        } else {
+            timeLeft.style.width = countdownBar.clientWidth + 'px'
+            clearInterval(startTimer)
+            win = false
+        }
     }
 }
 
+const checkForWinner = () => {}
 
 
 
 
-init()
 
 /*----------- Event Listeners ----------*/
 
-startBut.addEventListener("click",(() => {
-    const startGame = () => {
-        instEl.classList.display = "hidden"
-        } 
-    startGame()
-    shuffleCards()
-}))
+startBut.addEventListener("click", shuffleCards)
+
+for(let i = 0; i < cardEls[i]; i++) {
+    cardEls[i].addEventListener("click", handleClick)
+}
+           
+   
+    
 
 
 

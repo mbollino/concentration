@@ -4,10 +4,6 @@
 
 body {
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background: rgb(63, 62, 62);
   color: rgb(255, 255, 255);
 }
@@ -24,27 +20,42 @@ header {
   text-align: center;
 }
 
-/* .instructions {
-  line-height: 26pt;
-  font-size: 30px;
-
-} */
+.instructions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align:justify;
+}
 
 .intro {
   background-color: rgb(255,0,0);
   color: rgb(255,255,255);
   cursor: pointer;
   text-align: center;
-  font-size: 40px;
+  font-size: 15px;
   margin: auto;
   display: block;
 }
 
+.gameboard {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.msg {
+  margin: 0 auto;
+  text-align: center;
+}
+
 .timer-countdown {
-  visibility: hidden;
+  /* visibility: hidden; */
   height: 30px;
   width: 300px;
-  position: relative;
+  margin: 0 auto;
+  position:relative;
   border: 1px solid black;
   background: white;
   border-radius: 8px;
@@ -66,7 +77,8 @@ header {
   flex-wrap: wrap;
   width: auto;
   max-width: 700px;
-  visibility: hidden
+  margin: 0 auto;
+  /* visibility: hidden */
 }
 
 .card {
@@ -78,8 +90,12 @@ header {
   transition: transform 0.5s;
 }
 
-.card.flipped {
+.card.is-flipped  .front{
   transform: rotateY(180deg);
+}
+
+.card.is-flipped .back {
+  transform: rotateY(0deg);
 }
 
 .front, .back {
@@ -103,14 +119,23 @@ header {
   background-size: cover;
 }
 
-.hide {
+#restart {
+  background-color: rgb(0,0,255);
+  color: rgb(255,255,255);
+  cursor: pointer;
+  text-align: center;
+  font-size: 15px;
+  margin: auto;
+  display: block;
+}
+
+
+/* .hide {
   visibility: hidden;
 }
 
 .hidden {
   visibility: hidden;
-}
+} */
 
-.images {
-  visibility: hidden;
-}
+
