@@ -43,6 +43,8 @@ header {
   flex-wrap: wrap;
   justify-content: center;
   text-align: center;
+  gap: 20px;
+  margin-top: 10px;
 }
 
 .msg {
@@ -63,7 +65,7 @@ header {
   .progress-inner {
     width: 100%;
     height: 100%;
-    transition: background 0.2s;
+    transition: ease 0.2s;
     top: 0;
     left: 0;
     &.blue {
@@ -73,10 +75,14 @@ header {
 }
 
 .memory-cards {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  place-content: center center;
+  grid-gap: 16px;
   width: auto;
-  max-width: 700px;
+
+  /* max-width: 700px; */
   margin: 0 auto;
   /* visibility: hidden */
 }
@@ -87,19 +93,20 @@ header {
   margin: 5px;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.5s;
+  transition: all transform 0.5s;
+  transform-style: preserve-3d;
 }
 
-.card.is-flipped  .front{
+.card .is-flipped {
   transform: rotateY(180deg);
+  backface-visibility: hidden;
 }
 
-.card.is-flipped .back {
-  transform: rotateY(0deg);
-}
+
+
 
 .front, .back {
-  position:sticky;
+  position: relative;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
@@ -107,15 +114,20 @@ header {
   justify-content: center;
   align-items: center;
   border-radius: 10px;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 5;
 }
 
 .front {
   background-size: cover;
- }
+  }
 
 .back {
   background-image: url('https://images.pexels.com/photos/20816519/pexels-photo-20816519/free-photo-of-dog-lying-down-and-cat-sitting.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
   background-size: cover;
+  /* transform: rotateY(180deg); */
 }
 
 #restart {

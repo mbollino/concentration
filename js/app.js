@@ -300,11 +300,13 @@ let matchedCards = [];
 
 const cardEls = document.querySelectorAll('.card');
 const frontEls = document.querySelectorAll('.front')
+const backEls = document.querySelectorAll('.back')
 const messageEl = document.querySelectorAll('.msg');
 const startBut = document.getElementById('start');
 const instEl = document.querySelectorAll('.instructions')
 const timeLeft = document.getElementById("timer-countdown-inner-blue")
 const countdownBar = document.getElementById("timer-countdown")
+
 
 /*-------------- Functions -------------*/
 
@@ -313,30 +315,39 @@ const init = () => {
     flippedCard = [];
     win = false;
     matchedCards = [];
-    buildFront()
+    // hideFront()
+
+        
 };
 
 
 // Shuffle cards randomly
 const shuffleCards = () => {
     for (let i = cardPickList.length - 1; i > 0; i--) {
-        console.log(cardPickList)
         const j = Math.floor(Math.random() * (i + 1));
         [cardPickList[i], cardPickList[j]] = [cardPickList[j], cardPickList[i]];
     }
+    buildFront()
 };
 
 const buildFront = () => {
-        frontEls.forEach((card, index) => {
-            card.style.backgroundImage = `url(${cardPickList[index].src})`
-            // card.classList.toggle = "is-flipped"   
-        console.log(card)
-        })
-    }
+    frontEls.forEach((front, index) => {
+        front.style.backgroundImage = `url(${cardPickList[index].src})`
+        backEls.forEach(back => {
+            if(front.style.visibility !== "hidden") {
+                back.style.visibility = "hidden"
+            } else {
+                back.style.visibility !== "hidden"
+            }
+            setTimeout(() => {
+                front.style.visibility = "hidden"
+            }, 8000)
+        })})}
+  
 
 // Flip a card when clicked
 const flipCard = function () {
-    if (flippedCard.length < 2 && !this.classList.contains('is-flipped')) {
+    if (flippedCard.length < 2 ) {
         this.classList.add('is-flipped');
         flippedCard.push(this);
 
