@@ -298,6 +298,7 @@ let matchedCards = [];
 
 /*----- Cached Element References  -----*/
 
+const gameBoard = document.getElementById('gameboard')
 const cardEls = document.querySelectorAll('.card');
 const frontEls = document.querySelectorAll('.front')
 const backEls = document.querySelectorAll('.back')
@@ -315,10 +316,10 @@ const init = () => {
     flippedCard = [];
     win = false;
     matchedCards = [];
-    // hideFront()
 
         
 };
+
 
 
 // Shuffle cards randomly
@@ -333,26 +334,28 @@ const shuffleCards = () => {
 const buildFront = () => {
     frontEls.forEach((front, index) => {
         front.style.backgroundImage = `url(${cardPickList[index].src})`
-        backEls.forEach(back => {
-            if(front.style.visibility !== "hidden") {
-                back.style.visibility = "hidden"
-            } else {
-                back.style.visibility !== "hidden"
-            }
-            setTimeout(() => {
-                front.style.visibility = "hidden"
-            }, 8000)
-        })})}
-  
+    backEls.forEach(back => {
+        back.style.visibility = "hidden"        
+        setTimeout(() => {
+            front.style.transform = "rotateY(180deg)"
+        }, 10000)
+        setTimeout(() => {
+            back.style.visibility = "visible"
+        }, 10000)
+})})}
+
+
 
 // Flip a card when clicked
 const flipCard = function () {
     if (flippedCard.length < 2 ) {
         this.classList.add('is-flipped');
         flippedCard.push(this);
+        // this.style.transform = "rotateY(180deg)"
+        console.log(flippedCard)
 
         if (flippedCard.length === 2) {
-            setTimeout(checkForMatch, 8000);
+            setTimeout(checkForMatch, 1000);
         }
     }
 };
