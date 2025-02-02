@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- <img src="//images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"> -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
@@ -10,7 +11,7 @@
   <body>
     <header>
       <h1>Concentration</h1>
-      <h2>Can you beat the timer?</h2>
+      <h2>Can you find all the matches?</h2>
     </header>
     <main>
       <section class="instructions">
@@ -21,213 +22,213 @@
             pairs before the timer runs out?
           </p>
           <ol>
-            <li>Click "Start Game"</li>
-            <li>
-              The gameboard will appear and you will have 8 seconds to memorize
-              the position of all the cards.
-            </li>
-            <li>Click your first card! This starts the countdown!</li>
-            <li>Find the matching card before the timer runs out!!</li>
+            <!-- <li>Click "Start Game"</li> -->
+            <!-- <li> -->
+              <!-- The gameboard will appear and you will have 8 seconds to memorize
+              the position of all the cards. -->
+            <!-- </li> -->
+            <li>Click your first card!  This will start the game timer.</li>
+            <li>Find the matching card to clear the pair from the board.</li>
             <!-- <li>If you click the wrong card, don't worry! You get three wrong guesses before you lose the game!</li> -->
-            <li>Find all the matches and clear the board to win!!</li>
+            <li>Find all the matches and clear the board before the timer runs out to win!!</li>
           </ol>
           <p>Give it a try! Do you dare??!!</p>
         </section>
-        <button id="start" class="intro">Start Game</button>
+        <!-- <button id="start" class="intro">Start Game</button> -->
       </section>
       <section class="message">
-        <div class="msg">Message</div>
+        <h3 id="msg" class="hidden">Message</h3>
       </section>
-      <section class="timer">
-        <div class="timer-countdown">
-          <div class="timer-countdown-inner-blue"></div>
-        </div>
-      </section>
-      <div id="gameboard">
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
-        </div>
-        <div class="memory-card">
-          <div class="card">
-            <div class="front"></div>
-            <div class="back"></div>
-          </div>
+      <div class="timer">
+        <div id="progressBar">
+          <div id="progress"></div>
         </div>
       </div>
-      <!-- <section class="restart">
+      <div id="gameboard">
+        <!-- <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div>
+        <div class="memory-card">
+          <div class="card">
+            <div class="front"></div>
+            <div class="back"></div>
+          </div>
+        </div> -->
+      </div>
+      <section class="restart">
         <button id="restart" class="hidden">Play Again?</button>
-      </section> -->
+      </section>
     </main>
   </body>
 </html>

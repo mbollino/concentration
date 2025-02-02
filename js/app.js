@@ -37,12 +37,12 @@
 //         // id: [6, 21],
 //         alt: "alt"
 //     },
-//     {
-//         name: "Pet7",
-//         src: "./assets/Pet7.jpg",
-//         // id: [7, 22],
-//         alt: "alt"
-//     },
+    // {
+    //     name: "Pet7",
+    //     src: "./assets/Pet7.jpg",
+    //     // id: [7, 22],
+    //     alt: "alt"
+    // },
 //     {
 //         name: "Pet8",
 //         src: "./assets/Pet8.jpg",
@@ -222,7 +222,7 @@
 
 
 // // .active, .instructions:hover {
-// //     background-color: rgb(255,255,0)
+// //     backgrourgb(255,255,0)
 // //   }
   
 // //   .content {
@@ -249,12 +249,12 @@
   
 // //   #no-match {
 // //     font-size: 25px;
-// //     color: rgb(255,255,0)
+// //  rgb(255,255,0)
 // //   }
   
 // //   #match {
 // //     font-size: 25px;
-// //     color: rgb(100, 214, 87);
+// //  rgb(100, 214, 87);
 // //   }
   
 // //   #win {
@@ -264,139 +264,247 @@
   
 // //   #lose {
 // //     font-size: 30px;
-// //     color: rgb(255,0,0)
+// //  rgb(255,0,0)
 // //   }
 
 /*-------------- Constants -------------*/
 
+// const cards = [
+//     { name: "Pet1", src: "./assets/Pet1.jpg", alt: "alt" },
+//     { name: "Pet2", src: "./assets/Pet2.jpg", alt: "alt" },
+//     { name: "Pet3", src: "./assets/Pet3.jpg", alt: "alt" },
+//     { name: "Pet4", src: "./assets/Pet4.jpg", alt: "alt" },
+//     { name: "Pet5", src: "./assets/Pet5.jpg", alt: "alt" },
+//     { name: "Pet6", src: "./assets/Pet6.jpg", alt: "alt" },
+//     { name: "Pet7", src: "./assets/Pet7.jpg", alt: "alt" },
+//     { name: "Pet8", src: "./assets/Pet8.jpg", alt: "alt" },
+//     { name: "Pet9", src: "./assets/Pet9.jpg", alt: "alt" },
+//     { name: "Pet10", src: "./assets/Pet10.jpg", alt: "alt" },
+//     { name: "Pet11", src: "./assets/Pet11.jpg", alt: "alt" },
+//     { name: "Pet12", src: "./assets/Pet12.jpg", alt: "alt" },
+//     { name: "Pet13", src: "./assets/Pet13.jpg", alt: "alt" },
+//     { name: "Pet14", src: "./assets/Pet14.jpg", alt: "alt" },
+//     { name: "Pet15", src: "./assets/Pet15.jpg", alt: "alt" }  
+// ];
+
 const cards = [
-    { name: "Pet1", src: "./assets/Pet1.jpg", alt: "alt" },
-    { name: "Pet2", src: "./assets/Pet2.jpg", alt: "alt" },
-    { name: "Pet3", src: "./assets/Pet3.jpg", alt: "alt" },
-    { name: "Pet4", src: "./assets/Pet4.jpg", alt: "alt" },
-    { name: "Pet5", src: "./assets/Pet5.jpg", alt: "alt" },
-    { name: "Pet6", src: "./assets/Pet6.jpg", alt: "alt" },
-    { name: "Pet7", src: "./assets/Pet7.jpg", alt: "alt" },
-    { name: "Pet8", src: "./assets/Pet8.jpg", alt: "alt" },
-    { name: "Pet9", src: "./assets/Pet9.jpg", alt: "alt" },
-    { name: "Pet10", src: "./assets/Pet10.jpg", alt: "alt" },
-    { name: "Pet11", src: "./assets/Pet11.jpg", alt: "alt" },
-    { name: "Pet12", src: "./assets/Pet12.jpg", alt: "alt" },
-    { name: "Pet13", src: "./assets/Pet13.jpg", alt: "alt" },
-    { name: "Pet14", src: "./assets/Pet14.jpg", alt: "alt" },
-    { name: "Pet15", src: "./assets/Pet15.jpg", alt: "alt" }  
+    "#DFFF00",
+    "#DE3163",
+    "#6495ED",
+    "#0000FF",
+    "#000000",
+    "#00FF00",
+    "#800080",
+    "#00FFFF",
+    "#808080",
+    "#FF0000"
 ];
 
 const cardPickList = [...cards, ...cards];
-let cardCount = cardPickList.length;
+// const duration = 120
+
+// let cardCount = cardPickList.length;
+// console.log(cardPickList)
 
 /*---------- Variables (state) ---------*/
 
-let flippedCard = [];
-let win = false;
-let matchedCards = [];
+let flippedCard 
+let matchedCards
+let win
+let msg
+let isBoardLocked
+let timeLeft = 1600
 
 /*----- Cached Element References  -----*/
 
 const gameBoard = document.getElementById('gameboard')
-const cardEls = document.querySelectorAll('.card');
-const frontEls = document.querySelectorAll('.front')
-const backEls = document.querySelectorAll('.back')
-const messageEl = document.querySelectorAll('.msg');
-const startBut = document.getElementById('start');
-const instEl = document.querySelectorAll('.instructions')
-const timeLeft = document.getElementById("timer-countdown-inner-blue")
-const countdownBar = document.getElementById("timer-countdown")
 
+
+const startGame = document.getElementById('start')
+const messageEl = document.querySelector('#msg');
+const restartGame = document.getElementById('restart');
+const instEl = document.querySelectorAll('.instructions')
+const progress = document.getElementById("progress")
+const progressBar = document.getElementById("progressBar")
+ console.log(restartGame)
 
 /*-------------- Functions -------------*/
 
 // Initialize the game state
 const init = () => {
-    flippedCard = [];
-    win = false;
-    matchedCards = [];
-
-        
+    flippedCard = [],
+    matchedCards = [],
+    isBoardLocked = false,
+    win = false,
+    // clearInterval(timer)
+    render()
 };
 
+const render = () => {
+    const shuffleColors = shuffleCards(cardPickList)
+     shuffleColors.forEach(color => {
+         const card = createCard(color)
+         gameBoard.appendChild(card)
+         // console.log(card)
+     })
+}
 
 
 // Shuffle cards randomly
-const shuffleCards = () => {
+const shuffleCards = (cardPickList) => {
     for (let i = cardPickList.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [cardPickList[i], cardPickList[j]] = [cardPickList[j], cardPickList[i]];
     }
-    buildFront()
-};
-
-const buildFront = () => {
-    frontEls.forEach((front, index) => {
-        front.style.backgroundImage = `url(${cardPickList[index].src})`
-    backEls.forEach(back => {
-        back.style.visibility = "hidden"        
-        setTimeout(() => {
-            front.style.transform = "rotateY(180deg)"
-        }, 10000)
-        setTimeout(() => {
-            back.style.visibility = "visible"
-        }, 10000)
-})})}
+    return cardPickList
+}
 
 
+const createCard = (color) => {
+    const card = document.createElement("div")
+    card.classList.add("card")
+    card.dataset.color = color
+    // console.log(image)
+
+    const cardFront = document.createElement("div")
+    cardFront.classList.add("card-front")
+    cardFront.style.backgroundColor = color
+
+    // console.log(cardFront)
+    // console.log(cardFront.style.backgroundColor)
+    
+        
+    const cardBack = document.createElement("div")
+    // cardBack.src = image
+    
+    // cardBack.src = `${image}`
+    // console.log(image)
+    cardBack.classList.add("card-back")
+    // cardBack.style.backgroundColor = color
+    // console.log(cardBack)
+    card.appendChild(cardFront)
+    card.appendChild(cardBack)
+    
+    // const flipAllCards = () => {
+    //     const cardEls = document.querySelectorAll('.card')
+    //     cardEls.forEach(card => card.classList.add('is-flipped'))
+    // }
+    // for (let i = 0; i < cardEls.length; i++) {
+    // cardEls[i].addEventListener("click", flipCard) 
+    // }
+
+
+    // startGame.addEventListener.apply('click', () => {
+    //     flipAllCards()
+    // })
+    card.addEventListener("click", handleClick)
+
+    
+    
+    return card
+}
+// 
+    //     cardBack.forEach((back, index) => {
+            
+        // })}
+        // buildFront()
+//         back.style.visibility = "hidden"        
+//         setTimeout(() => {
+//             front.style.transform = "rotateY(180deg)"
+//         }, 10000)
+//         setTimeout(() => {
+//             back.style.visibility = "visible"
+//         }, 10000)
+// })})}
 
 // Flip a card when clicked
-const flipCard = function () {
-    if (flippedCard.length < 2 ) {
-        this.classList.add('is-flipped');
-        flippedCard.push(this);
-        // this.style.transform = "rotateY(180deg)"
-        console.log(flippedCard)
-
-        if (flippedCard.length === 2) {
-            setTimeout(checkForMatch, 1000);
-        }
-    }
-};
-
-// Check if two flipped cards match
-const checkForMatch = () => {
-    const [card1, card2] = flippedCard;
-
-    if (card1.dataset.name === card2.dataset.name) {
-        matchedCards.push(card1, card2);
-        flippedCard = [];
-    } else {
-        setTimeout(() => {
-            card1.classList.remove('is-flipped');
-            card2.classList.remove('is-flipped');
-            flippedCard = [];
-        }, 1000);
-    }
-
-    checkForWinner();
-};
-
-// Check if all cards have been matched
-const checkForWinner = () => {
-    if (matchedCards.length === cardCount) {
-        win = true;
-        alert("Congratulations! You win!");
-    }
-};
-
-// Handle card click event
 const handleClick = function () {
     flipCard.call(this);
 };
 
+const flipCard = function () {
+    if (win === true || isBoardLocked || this.classList.contains("matched") || flippedCard.includes(this)) {
+        return
+    } 
+    
+    this.classList.add('is-flipped');
+    flippedCard.push(this);
+
+    // if (flippedCard.length < 2) {
+        const timer = setInterval(() => {
+          const progressWidth = (timeLeft / 1600) * 100
+            progress.style.width = progressWidth + "%"
+            timeLeft--
+            if (timeLeft < 0) {
+                clearInterval(timer)
+                isBoardLocked = true
+                messageEl.classList.remove('hidden')
+                messageEl.textContent = "Time's up! You Lose!"
+                restartGame.classList.remove('hidden')
+            }
+            }, 1000)
+    
+    // console.log(flippedCard)
+    
+    if (flippedCard.length === 2) {
+        // clearInterval(timer)
+        isBoardLocked = true
+        checkForMatch()
+    }
+}
+
+
+// Check if two flipped cards match
+const checkForMatch = () => {
+    const [card1, card2] = flippedCard;
+ 
+    if (card1.dataset.color === card2.dataset.color) {
+        card1.classList.add("matched")
+        card2.classList.add("matched")
+        matchedCards.push(card1, card2);
+        flippedCard = [];
+        checkForWinner()
+    } else {
+        messageEl.classList.remove('hidden')
+        messageEl.textContent = "No match. Try again."
+        setTimeout(() => {
+            card1.classList.remove('is-flipped');
+            card2.classList.remove('is-flipped');
+            flippedCard = [];
+            isBoardLocked = false
+        }, 1000);
+    }
+
+    // checkForWinner();
+};
+
+// Check if all cards have been matched
+const checkForWinner = () => {
+    if (matchedCards.length === cardPickList.length) {
+        win = true
+        messageEl.classList.remove('hidden')
+        messageEl.textContent = "Congratulations!! You won!"
+        isBoardLocked = false
+        clearInterval(timer)
+        restartGame.classList.remove('hidden')
+    } else {
+        messageEl.classList.remove('hidden')
+        messageEl.textContent = "Great match! Keep going!!"
+        isBoardLocked = false
+    }
+};
+
+// const resetGame = () => {
+//     flippedCard = [],
+//     matchedCards= [],
+//     win = false;
+//     render()
+// }
+// Handle card click event
+
 // Attach event listeners
-startBut.addEventListener("click", shuffleCards);
+restartGame.addEventListener("click", init);
 
 // Attach click events to each card
-for (let i = 0; i < cardEls.length; i++) {
-    cardEls[i].addEventListener("click", handleClick);
-}
-  
+
 init();

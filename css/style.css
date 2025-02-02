@@ -4,12 +4,19 @@
 
 body {
   margin: 0;
-  background: rgb(63, 62, 62);
+  background-image: url('https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  /* background: rgb(63, 62, 62); */
   color: rgb(255, 255, 255);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
 }
 
 h1 {
-  color: rgb(255,255,0)
+  color: rgb(1, 1, 1)
 }
 
 h2 {
@@ -20,8 +27,17 @@ header {
   text-align: center;
 }
 
+/* .main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+} */
+
 .instructions {
   display: flex;
+  color: rgb(1, 1, 1);
   flex-direction: column;
   justify-content: space-between;
   text-align:justify;
@@ -37,78 +53,112 @@ header {
   display: block;
 }
 
-.msg {
+#msg {
   margin: 0 auto;
   text-align: center;
+  color: rgb(1, 1, 1)
 }
 
-.timer-countdown {
+#progressBar {
   /* visibility: hidden; */
   height: 30px;
   width: 300px;
   margin: 0 auto;
   position:relative;
   border: 1px solid black;
-  background: white;
+  background: rgb(255,255,255);
   border-radius: 8px;
-  overflow: hidden;
-  .progress-inner {
-    width: 100%;
-    height: 100%;
-    transition: ease 0.2s;
-    top: 0;
-    left: 0;
-    &.blue {
-      background: blue;
-    }
-  }
+  /* overflow: hidden; */
 }
+
+#progress {
+    position: absolute;
+    /* width: 100%; */
+    height: 100%;
+    transition: 0.5s ease-in-out;
+    /* top: 0; */
+    /* left: 0; */
+    background: rgb(0,0,255);
+    border-radius: 8px;
+  }
+  
+/* #play-animation {
+  animation: progress-animation 5s forwards;
+
+}
+
+@keyframes progress-animation {
+  0% {width: 0%;}
+  100% {width: 100%;}
+  */
+/* } */
+
 
 #gameboard {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  gap: 15px;
+  grid-template-columns: repeat(5, 1fr);
+  /* grid-template-rows: repeat(4, 1fr); */
+  /* margin: 10px 500px 0 430px; */
+  gap: 10px 0px;
+  /* position: fixed; */
 }
 
 .card {
   width: 100px;
   height: 100px;
-  perspective: 1000px;
+  background-color: #ccc;
+  border: 1px solid #000;
+  cursor: pointer;
+  position: relative;
 }
 
-.memory-card {
+/* .memory-card {
   position: relative;
   width: 100%;
   height: 100%;
-}
+} */
 
-.card .is-flipped {
+.is-flipped .card {
+  background-color: : #fff;
   transition: transform 0.8s;
   transform-style: preserve-3d;
   transform: rotateY(180deg);
 }
 
-.front, .back {
-  position: relative;
+.card-front, .card-back {
+  position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
+  transition: transform 0.5s;
 }
 
-.front {
+.card.front {
   background-size: cover;
-  /* transform: rotateY(180deg); */
+  transform: rotateY(180deg);
+  /* color:rgb(17, 155, 241);
+  background-color: blueviolet; */
+}
+.is-flipped .card-front {
+  transform: rotateY(0deg)
 }
 
-.back {
-  background-image: url('https://images.pexels.com/photos/20816519/pexels-photo-20816519/free-photo-of-dog-lying-down-and-cat-sitting.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+.card-back {
+  background-image: url('https://images.pexels.com/photos/1191710/pexels-photo-1191710.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
   background-size: cover;
-  /* transform: rotateY(0deg) */
+  /* color:rgb(255, 255, 255); */
+  /* background-color: chartreuse; */
+
+  transform: rotateY(0deg)
+}
+
+.is-flipped .card-back {
+  transform: rotateY(180deg)
 }
 
 .card.matched {
   pointer-events: none;
+  visibility: hidden;
 }
 
 #restart {
@@ -125,9 +175,9 @@ header {
 /* .hide {
   visibility: hidden;
 }
-
+*/
 .hidden {
   visibility: hidden;
-} */
+} 
 
 
