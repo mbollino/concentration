@@ -4,48 +4,50 @@
 
 body {
   margin: 0;
-  background-image: url('https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-  /* background: rgb(63, 62, 62); */
+  background-image: url("https://images.pexels.com/photos/2088205/pexels-photo-2088205.jpeg?auto=compress&cs=tinysrgb&w=600");
   color: rgb(255, 255, 255);
+  background-size: 100% 100%;
   margin: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 
 h1 {
-  color: rgb(1, 1, 1)
+  color: rgb(1, 1, 1);
+  font-family: "Sixtyfour Convergence", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "BLED" 0, "SCAN" 0, "XELA" 0, "YELA" 0; 
+  font-variation-settings: 'wght' 850;
 }
 
 h2 {
-  color: rgb(17, 155, 241)
+  color: rgb(17, 155, 241);
+  font-family: "Rubik Gemstones", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 header {
   text-align: center;
 }
 
-/* .main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  
-} */
-
 .instructions {
   display: flex;
   color: rgb(1, 1, 1);
   flex-direction: column;
   justify-content: space-between;
-  text-align:justify;
+  text-align: justify;
+  font-family: "Cardo", serif;
+  font-weight: 700;
+  font-style: normal;
 }
 
 .intro {
-  background-color: rgb(255,0,0);
-  color: rgb(255,255,255);
+  background-color: rgb(255, 0, 0);
+  color: rgb(255, 255, 255);
   cursor: pointer;
   text-align: center;
   font-size: 15px;
@@ -56,51 +58,32 @@ header {
 #msg {
   margin: 0 auto;
   text-align: center;
-  color: rgb(1, 1, 1)
+  color: rgb(1, 1, 1);
 }
 
 #progressBar {
-  /* visibility: hidden; */
   height: 30px;
   width: 300px;
   margin: 0 auto;
-  position:relative;
+  position: relative;
   border: 1px solid black;
-  background: rgb(255,255,255);
+  background: rgb(255, 255, 255);
   border-radius: 8px;
-  /* overflow: hidden; */
 }
 
 #progress {
-    position: absolute;
-    /* width: 100%; */
-    height: 100%;
-    transition: 0.5s ease-in-out;
-    /* top: 0; */
-    /* left: 0; */
-    background: rgb(0,0,255);
-    border-radius: 8px;
-  }
-  
-/* #play-animation {
-  animation: progress-animation 5s forwards;
-
+  position: absolute;
+  height: 100%;
+  transition: 0.5s ease-in-out;
+  background: rgb(0, 0, 255);
+  border-radius: 8px;
 }
-
-@keyframes progress-animation {
-  0% {width: 0%;}
-  100% {width: 100%;}
-  */
-/* } */
-
 
 #gameboard {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  /* grid-template-rows: repeat(4, 1fr); */
-  /* margin: 10px 500px 0 430px; */
+  margin-top: 15px;
   gap: 10px 0px;
-  /* position: fixed; */
 }
 
 .card {
@@ -112,20 +95,15 @@ header {
   position: relative;
 }
 
-/* .memory-card {
-  position: relative;
-  width: 100%;
-  height: 100%;
-} */
-
 .is-flipped .card {
-  background-color: : #fff;
+  background-color: #fff;
   transition: transform 0.8s;
   transform-style: preserve-3d;
   transform: rotateY(180deg);
 }
 
-.card-front, .card-back {
+.card-front,
+.card-back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -136,24 +114,19 @@ header {
 .card.front {
   background-size: cover;
   transform: rotateY(180deg);
-  /* color:rgb(17, 155, 241);
-  background-color: blueviolet; */
 }
 .is-flipped .card-front {
-  transform: rotateY(0deg)
+  transform: rotateY(0deg);
 }
 
 .card-back {
-  background-image: url('https://images.pexels.com/photos/1191710/pexels-photo-1191710.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-image: url("https://images.pexels.com/photos/1279813/pexels-photo-1279813.jpeg?auto=compress&cs=tinysrgb&w=600");
   background-size: cover;
-  /* color:rgb(255, 255, 255); */
-  /* background-color: chartreuse; */
-
-  transform: rotateY(0deg)
+  transform: rotateY(0deg);
 }
 
 .is-flipped .card-back {
-  transform: rotateY(180deg)
+  transform: rotateY(180deg);
 }
 
 .card.matched {
@@ -162,8 +135,8 @@ header {
 }
 
 #restart {
-  background-color: rgb(0,0,255);
-  color: rgb(255,255,255);
+  background-color: rgb(0, 0, 255);
+  color: rgb(255, 255, 255);
   cursor: pointer;
   text-align: center;
   font-size: 15px;
@@ -171,13 +144,6 @@ header {
   display: block;
 }
 
-
-/* .hide {
-  visibility: hidden;
-}
-*/
 .hidden {
   visibility: hidden;
-} 
-
-
+}
