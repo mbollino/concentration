@@ -273,6 +273,8 @@ Google Fonts:
 [Sixtyfour Convergence](https://fonts.googleapis.com/css2?family=Fontdiner+Swanky&family=Honk&family=Neonderthaw&family=Parisienne&family=Sixtyfour+Convergence&family=Yatra+One&display=swap)  
 [Rubik Gemstones](https://fonts.googleapis.com/css2?family=Rubik+Gemstones&display=swap)  
 [Cardo](https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&display=swap)  
+
+Pictures:  
 [Background](https://images.pexels.com/photos/2088205/pexels-photo-2088205.jpeg?auto=compress&cs=tinysrgb&w=600)  
 [Back of cards](https://images.pexels.com/photos/1279813/pexels-photo-1279813.jpeg?auto=compress&cs=tinysrgb&w=600)  
 
