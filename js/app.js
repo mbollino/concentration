@@ -26,22 +26,21 @@ let timer;
 /*----- Cached Element References  -----*/
 
 const gameBoard = document.getElementById("gameboard");
-
 const startGame = document.getElementById("start");
 const messageEl = document.querySelector("#msg");
-const playButton = document.getElementById("play");
 const progress = document.getElementById("progress");
 const progressBar = document.getElementById("progressBar");
+const playButton = document.getElementById("play");
 
 /*-------------- Functions -------------*/
 
 const init = () => {
-  flippedCard = [];
-  matchedCards = [];
-  isBoardLocked = false;
-  win = false;
-  timeLeft = 60;
-  messageEl.classList.add("hidden");
+  (flippedCard = []),
+    (matchedCards = []),
+    (isBoardLocked = false),
+    (win = false),
+    (timeLeft = 60);
+    messageEl.classList.add('hidden')
   render();
 };
 
@@ -105,7 +104,7 @@ const flipCard = function () {
 };
 
 const startTimer = () => {
-  const timer = setInterval(() => {
+  timer = setInterval(() => {
     const progressWidth = (timeLeft / 60) * 100;
     progress.style.width = progressWidth + "%";
     timeLeft--;
@@ -114,7 +113,6 @@ const startTimer = () => {
       isBoardLocked = true;
       messageEl.classList.remove("hidden");
       messageEl.textContent = "Time's up! You Lose!";
-      //   restartGame.classList.remove("hidden");
       gameBoard.innerHTML = "";
     }
   }, 1000);
@@ -154,7 +152,6 @@ const checkForWinner = () => {
     isBoardLocked = false;
     clearInterval(timer);
     gameBoard.innerHTML = "";
-    // restartGame.classList.remove("hidden");
   } else {
     messageEl.classList.remove("hidden");
     messageEl.textContent = "Great match! Keep going!!";
@@ -162,7 +159,4 @@ const checkForWinner = () => {
   }
 };
 
-// restartGame.addEventListener("click", init);
 playButton.addEventListener("click", play);
-
-// init();
