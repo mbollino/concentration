@@ -20,7 +20,8 @@ let matchedCards;
 let win;
 let msg;
 let isBoardLocked;
-let timeLeft = 1600;
+let timeLeft;
+let timer;
 
 /*----- Cached Element References  -----*/
 
@@ -28,18 +29,19 @@ const gameBoard = document.getElementById("gameboard");
 
 const startGame = document.getElementById("start");
 const messageEl = document.querySelector("#msg");
-const restartGame = document.getElementById("restart");
+const playButton = document.getElementById("play");
 const progress = document.getElementById("progress");
 const progressBar = document.getElementById("progressBar");
 
 /*-------------- Functions -------------*/
 
 const init = () => {
-  (flippedCard = []),
-    (matchedCards = []),
-    (isBoardLocked = false),
-    (win = false),
-    (timeLeft = 1600);
+  flippedCard = [];
+  matchedCards = [];
+  isBoardLocked = false;
+  win = false;
+  timeLeft = 60;
+  messageEl.classList.add("hidden");
   render();
 };
 
@@ -96,8 +98,15 @@ const flipCard = function () {
   this.classList.add("is-flipped");
   flippedCard.push(this);
 
+  if (flippedCard.length === 2) {
+    isBoardLocked = true;
+    checkForMatch();
+  }
+};
+
+const startTimer = () => {
   const timer = setInterval(() => {
-    const progressWidth = (timeLeft / 1600) * 100;
+    const progressWidth = (timeLeft / 60) * 100;
     progress.style.width = progressWidth + "%";
     timeLeft--;
     if (timeLeft < 0) {
@@ -105,14 +114,15 @@ const flipCard = function () {
       isBoardLocked = true;
       messageEl.classList.remove("hidden");
       messageEl.textContent = "Time's up! You Lose!";
-      restartGame.classList.remove("hidden");
+      //   restartGame.classList.remove("hidden");
+      gameBoard.innerHTML = "";
     }
   }, 1000);
+};
 
-  if (flippedCard.length === 2) {
-    isBoardLocked = true;
-    checkForMatch();
-  }
+const play = () => {
+  startTimer();
+  init();
 };
 
 const checkForMatch = () => {
@@ -142,8 +152,9 @@ const checkForWinner = () => {
     messageEl.classList.remove("hidden");
     messageEl.textContent = "Congratulations!! You won!";
     isBoardLocked = false;
-    clearInterval(timer)
-    restartGame.classList.remove("hidden");
+    clearInterval(timer);
+    gameBoard.innerHTML = "";
+    // restartGame.classList.remove("hidden");
   } else {
     messageEl.classList.remove("hidden");
     messageEl.textContent = "Great match! Keep going!!";
@@ -151,6 +162,7 @@ const checkForWinner = () => {
   }
 };
 
-restartGame.addEventListener("click", init);
+// restartGame.addEventListener("click", init);
+playButton.addEventListener("click", play);
 
-init();
+// init();
