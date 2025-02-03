@@ -120,7 +120,7 @@ const startTimer = () => {
 
 const play = () => {
   startTimer();
-  init();
+  init(); 
 };
 
 const checkForMatch = () => {
