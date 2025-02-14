@@ -46,7 +46,7 @@ const init = () => {
   timeLeft = 65;
   messageEl.classList.add("hidden");
   playButton.classList.add("hidden");
-  playButton.classList.add("hidden");
+  restartButton.classList.add("hidden");
   render();
 };
 
