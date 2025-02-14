@@ -26,7 +26,6 @@ let timer;
 /*----- Cached Element References  -----*/
 
 const gameBoard = document.getElementById("gameboard");
-const startGame = document.getElementById("start");
 const messageEl = document.querySelector("#msg");
 const progress = document.getElementById("progress");
 const progressBar = document.getElementById("progressBar");
@@ -34,11 +33,8 @@ const playButton = document.getElementById("play");
 const collapsible = document.getElementsByClassName("collapsible-header");
 const instructions = document.querySelector(".instructions");
 const callout = document.querySelector(".callout");
-const content = document.querySelector(".callout-container");
-// const arrow = document.querySelector(".arrow")
-
-console.log(collapsible);
-console.log(callout);
+const restartButton = document.getElementById("restart");
+const blinkText = document.getElementById("blinkingText")
 
 /*-------------- Functions -------------*/
 
@@ -49,8 +45,18 @@ const init = () => {
   win = false;
   timeLeft = 65;
   messageEl.classList.add("hidden");
+  playButton.classList.add("hidden");
+  playButton.classList.add("hidden");
   render();
 };
+
+const blinkingText = () => {
+  setInterval(() => {
+    blinkText.style.visibility = (blinkText.style.visibility === "hidden" ? "visible" : "hidden")
+  }, 500)
+}
+
+blinkingText()
 
 const render = () => {
   const shuffleColors = shuffleCards(cardPickList);
@@ -112,16 +118,17 @@ const flipCard = function () {
 };
 
 const flipAllCards = (duration = 5000) => {
-  isBoardLocked = true
+  isBoardLocked = true;
   const cards = document.querySelectorAll(".card");
   cards.forEach((card) => card.classList.add("is-flipped"));
   setTimeout(() => {
-    isBoardLocked = false
+    isBoardLocked = false;
     cards.forEach((card) => card.classList.remove("is-flipped"));
   }, duration);
 };
 
 const startTimer = () => {
+  progressBar.classList.remove("hide");
   timer = setInterval(() => {
     const progressWidth = (timeLeft / 65) * 100;
     progress.style.width = progressWidth + "%";
@@ -132,6 +139,7 @@ const startTimer = () => {
       messageEl.classList.remove("hidden");
       messageEl.textContent = "Time's up! You Lose!";
       gameBoard.innerHTML = "";
+      restartButton.classList.remove("hidden");
     }
   }, 1000);
 };
@@ -177,6 +185,7 @@ const checkForWinner = () => {
     isBoardLocked = false;
     clearInterval(timer);
     gameBoard.innerHTML = "";
+    restartButton.classList.remove("hidden");
   } else {
     messageEl.classList.remove("hidden");
     messageEl.textContent = "Great match! Keep going!!";
@@ -185,6 +194,8 @@ const checkForWinner = () => {
 };
 
 playButton.addEventListener("click", play);
+
+restartButton.addEventListener("click", play);
 
 for (let i = 0; i < collapsible.length; i++) {
   collapsible[i].addEventListener("click", function () {
