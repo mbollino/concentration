@@ -6,7 +6,7 @@ body {
   margin: 0;
   background-image: url("https://images.pexels.com/photos/2088205/pexels-photo-2088205.jpeg?auto=compress&cs=tinysrgb&w=600");
   color: rgb(255, 255, 255);
-  background-size: 100% 100%;
+  background-size: 100%;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -43,16 +43,7 @@ header {
   font-family: "Cardo", serif;
   font-weight: 700;
   font-style: normal;
-}
-
-.intro {
-  background-color: rgb(255, 0, 0);
-  color: rgb(255, 255, 255);
-  cursor: pointer;
-  text-align: center;
-  font-size: 15px;
-  margin: auto;
-  display: block;
+  visibility: visible;
 }
 
 #play {
@@ -93,7 +84,7 @@ header {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   margin-top: 15px;
-  gap: 10px 0px;
+  gap: 10px 15px;
 }
 
 .card {
@@ -147,3 +138,45 @@ header {
 .hidden {
   visibility: hidden;
 }
+
+.callout {
+  position: fixed;
+  cursor: pointer;
+  bottom: 35px;
+  right: 20px;
+  margin-left: 20px;
+  max-width: 200px;
+  display: none;
+}
+
+.collapsible-header {
+  background-color: rgba(2, 2, 94, 0.877);
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.closebtn {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.closebtn:hover {
+  color: lightblue;
+}
+
+.callout-container {
+  padding: 0 5px;
+  background-color: rgb(#ffc0cb);
+  color: black;
+}
+

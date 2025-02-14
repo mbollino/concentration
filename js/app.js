@@ -31,16 +31,24 @@ const messageEl = document.querySelector("#msg");
 const progress = document.getElementById("progress");
 const progressBar = document.getElementById("progressBar");
 const playButton = document.getElementById("play");
+const collapsible = document.getElementsByClassName("collapsible-header");
+const instructions = document.querySelector(".instructions");
+const callout = document.querySelector(".callout");
+const content = document.querySelector(".callout-container");
+// const arrow = document.querySelector(".arrow")
+
+console.log(collapsible);
+console.log(callout);
 
 /*-------------- Functions -------------*/
 
 const init = () => {
-  (flippedCard = []),
-    (matchedCards = []),
-    (isBoardLocked = false),
-    (win = false),
-    (timeLeft = 60);
-    messageEl.classList.add('hidden')
+  flippedCard = [];
+  matchedCards = [];
+  isBoardLocked = false;
+  win = false;
+  timeLeft = 65;
+  messageEl.classList.add("hidden");
   render();
 };
 
@@ -103,9 +111,19 @@ const flipCard = function () {
   }
 };
 
+const flipAllCards = (duration = 5000) => {
+  isBoardLocked = true
+  const cards = document.querySelectorAll(".card");
+  cards.forEach((card) => card.classList.add("is-flipped"));
+  setTimeout(() => {
+    isBoardLocked = false
+    cards.forEach((card) => card.classList.remove("is-flipped"));
+  }, duration);
+};
+
 const startTimer = () => {
   timer = setInterval(() => {
-    const progressWidth = (timeLeft / 60) * 100;
+    const progressWidth = (timeLeft / 65) * 100;
     progress.style.width = progressWidth + "%";
     timeLeft--;
     if (timeLeft < 0) {
@@ -118,9 +136,16 @@ const startTimer = () => {
   }, 1000);
 };
 
+const moveInstructions = () => {
+  instructions.style.display = "none";
+  callout.style.display = "block";
+};
+
 const play = () => {
   startTimer();
-  init(); 
+  init();
+  flipAllCards();
+  moveInstructions();
 };
 
 const checkForMatch = () => {
@@ -160,3 +185,15 @@ const checkForWinner = () => {
 };
 
 playButton.addEventListener("click", play);
+
+for (let i = 0; i < collapsible.length; i++) {
+  collapsible[i].addEventListener("click", function () {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight) {
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
