@@ -34,7 +34,7 @@ const collapsible = document.getElementsByClassName("collapsible-header");
 const instructions = document.querySelector(".instructions");
 const callout = document.querySelector(".callout");
 const restartButton = document.getElementById("restart");
-const blinkText = document.getElementById("blinkingText")
+const blinkText = document.getElementById("blinkingText");
 
 /*-------------- Functions -------------*/
 
@@ -52,11 +52,12 @@ const init = () => {
 
 const blinkingText = () => {
   setInterval(() => {
-    blinkText.style.visibility = (blinkText.style.visibility === "hidden" ? "visible" : "hidden")
-  }, 500)
-}
+    blinkText.style.visibility =
+      blinkText.style.visibility === "hidden" ? "visible" : "hidden";
+  }, 500);
+};
 
-blinkingText()
+blinkingText();
 
 const render = () => {
   const shuffleColors = shuffleCards(cardPickList);
@@ -138,6 +139,11 @@ const startTimer = () => {
       isBoardLocked = true;
       messageEl.classList.remove("hidden");
       messageEl.textContent = "Time's up! You Lose!";
+      messageEl.style.color = "rgb(0, 0, 0)";
+      messageEl.style.fontFamily = "Cardo, serif";
+      messageEl.style.fontWeight = "700";
+      messageEl.style.fontStyle = "normal";
+      messageEl.style.fontSize = "30px";
       gameBoard.innerHTML = "";
       restartButton.classList.remove("hidden");
     }
@@ -168,6 +174,12 @@ const checkForMatch = () => {
   } else {
     messageEl.classList.remove("hidden");
     messageEl.textContent = "No match. Try again.";
+    messageEl.style.color = "rgb(29, 189, 29)";
+    messageEl.style.fontFamily = "Rubik Gemstones, serif";
+    messageEl.style.fontWeight = "400";
+    messageEl.style.fontStyle = "normal";
+    messageEl.style.fontSize = "30px";
+
     setTimeout(() => {
       card1.classList.remove("is-flipped");
       card2.classList.remove("is-flipped");
@@ -182,13 +194,30 @@ const checkForWinner = () => {
     win = true;
     messageEl.classList.remove("hidden");
     messageEl.textContent = "Congratulations!! You won!";
+    messageEl.style.color = "rgb(231, 43, 10)";
+    messageEl.style.fontFamily = "Rubik Gemstones, serif;";
+    messageEl.style.fontWeight = "400";
+    messageEl.style.fontStyle = "normal";
+    messageEl.style.fontSize = "50px";
+    progressBar.classList.add("hidden");
     isBoardLocked = false;
     clearInterval(timer);
     gameBoard.innerHTML = "";
     restartButton.classList.remove("hidden");
+    confetti({
+      particleCount: 400,
+      spread: 300,
+      origin: { y: 0.7 },
+      colors: ["#bb0000", " #ffffff", "#d4af37", "#99b9b"]
+    });
   } else {
     messageEl.classList.remove("hidden");
     messageEl.textContent = "Great match! Keep going!!";
+    messageEl.style.color = "rgb(236, 9, 123)";
+    messageEl.style.fontFamily = "Rubik Gemstones, serif";
+    messageEl.style.fontWeight = "400";
+    messageEl.style.fontStyle = "normal";
+    messageEl.style.fontSize = "30px";
     isBoardLocked = false;
   }
 };

@@ -52,9 +52,9 @@ header {
   justify-content: center;
   font-family: "Bangers", serif;
   font-weight: 400;
-  font-style: normal;  
+  font-style: normal;
   font-size: 40px;
-  color: rgb(1, 1, 1)
+  color: rgb(1, 1, 1);
 }
 
 #play {
@@ -206,4 +206,3 @@ header {
   background-color: rgb(#ffc0cb);
   color: black;
 }
-
