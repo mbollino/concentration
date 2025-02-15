@@ -193,22 +193,18 @@ const checkForWinner = () => {
   if (matchedCards.length === cardPickList.length) {
     win = true;
     messageEl.classList.remove("hidden");
-    messageEl.textContent = "Congratulations!! You won!";
-    messageEl.style.color = "rgb(231, 43, 10)";
-    messageEl.style.fontFamily = "Rubik Gemstones, serif;";
-    messageEl.style.fontWeight = "400";
-    messageEl.style.fontStyle = "normal";
-    messageEl.style.fontSize = "50px";
     progressBar.classList.add("hidden");
-    isBoardLocked = false;
     clearInterval(timer);
+    messageEl.textContent = "Congratulations!! You won!";
+    messageEl.classList.add("animated-text");
+    isBoardLocked = false;
     gameBoard.innerHTML = "";
     restartButton.classList.remove("hidden");
     confetti({
       particleCount: 400,
       spread: 300,
       origin: { y: 0.7 },
-      colors: ["#bb0000", " #ffffff", "#d4af37", "#99b9b"]
+      colors: ["#bb0000", " #ffffff", "#d4af37", "#99b9b"],
     });
   } else {
     messageEl.classList.remove("hidden");
