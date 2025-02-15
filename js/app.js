@@ -12,6 +12,12 @@ const cards = [
 ];
 
 const cardPickList = [...cards, ...cards];
+const gameMusic = new Audio("../assets/gameMusic.mp3");
+const singleFlip = new Audio("../assets/flipcard.mp3");
+const notMatch = new Audio("../assets/wrong.mp3");
+const isAMatch = new Audio("../assets/success_bell.mp3");
+const lostGame = new Audio("../assets/lost_game.mp3");
+const wonGame = new Audio("../assets/winning.mp3");
 
 /*---------- Variables (state) ---------*/
 
@@ -63,6 +69,8 @@ const render = () => {
   const shuffleColors = shuffleCards(cardPickList);
   shuffleColors.forEach((color) => {
     const card = createCard(color);
+    gameMusic.volume = 0.1;
+    gameMusic.play();
     gameBoard.appendChild(card);
   });
 };
@@ -123,6 +131,8 @@ const flipAllCards = (duration = 5000) => {
   const cards = document.querySelectorAll(".card");
   cards.forEach((card) => card.classList.add("is-flipped"));
   setTimeout(() => {
+    singleFlip.volume = 0.1;
+    singleFlip.play();
     isBoardLocked = false;
     cards.forEach((card) => card.classList.remove("is-flipped"));
   }, duration);
@@ -146,6 +156,9 @@ const startTimer = () => {
       messageEl.style.fontSize = "30px";
       gameBoard.innerHTML = "";
       restartButton.classList.remove("hidden");
+      lostGame.volume = 0.1;
+      lostGame.play();
+      gameMusic.pause();
     }
   }, 1000);
 };
@@ -179,6 +192,8 @@ const checkForMatch = () => {
     messageEl.style.fontWeight = "400";
     messageEl.style.fontStyle = "normal";
     messageEl.style.fontSize = "30px";
+    notMatch.volume = 0.1;
+    notMatch.play();
 
     setTimeout(() => {
       card1.classList.remove("is-flipped");
@@ -200,6 +215,9 @@ const checkForWinner = () => {
     isBoardLocked = false;
     gameBoard.innerHTML = "";
     restartButton.classList.remove("hidden");
+    wonGame.volume = 0.1;
+    wonGame.play();
+    gameMusic.pause();
     confetti({
       particleCount: 400,
       spread: 300,
@@ -214,6 +232,8 @@ const checkForWinner = () => {
     messageEl.style.fontWeight = "400";
     messageEl.style.fontStyle = "normal";
     messageEl.style.fontSize = "30px";
+    isAMatch.volume = 0.1;
+    isAMatch.play();
     isBoardLocked = false;
   }
 };
