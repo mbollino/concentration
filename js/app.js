@@ -28,6 +28,7 @@ let msg;
 let isBoardLocked;
 let timeLeft;
 let timer;
+let numStrikes;
 
 /*----- Cached Element References  -----*/
 
@@ -40,7 +41,11 @@ const collapsible = document.getElementsByClassName("collapsible-header");
 const instructions = document.querySelector(".instructions");
 const callout = document.querySelector(".callout");
 const restartButton = document.getElementById("restart");
+const strikeBox = document.querySelector(".container")
 const blinkText = document.getElementById("blinkingText");
+const cellOne = document.getElementById("cell-1");
+const cellTwo = document.getElementById("cell-2");
+const cellThree = document.getElementById("cell-3");
 
 /*-------------- Functions -------------*/
 
@@ -50,9 +55,14 @@ const init = () => {
   isBoardLocked = false;
   win = false;
   timeLeft = 65;
+  numStrikes = 0;
   messageEl.classList.add("hidden");
   playButton.classList.add("hidden");
   restartButton.classList.add("hidden");
+  strikeBox.style.display = "grid"
+  cellOne.style.display = "none"
+  cellTwo.style.display = "none"
+  cellThree.style.display = "none"
   render();
 };
 
@@ -69,8 +79,9 @@ const render = () => {
   const shuffleColors = shuffleCards(cardPickList);
   shuffleColors.forEach((color) => {
     const card = createCard(color);
-    gameMusic.volume = 0.1;
+    gameMusic.volume = 0.5;
     gameMusic.play();
+    gameMusic.loop = true;
     gameBoard.appendChild(card);
   });
 };
@@ -172,7 +183,7 @@ const play = () => {
   startTimer();
   init();
   flipAllCards();
-  moveInstructions();
+  moveInstructions(); 
 };
 
 const checkForMatch = () => {
@@ -194,12 +205,41 @@ const checkForMatch = () => {
     messageEl.style.fontSize = "30px";
     notMatch.volume = 0.1;
     notMatch.play();
-
+    const handleStrike = () => {
+      numStrikes++;
+      const maxStrikes = 3;
+      if (numStrikes === 1) {
+        cellOne.style.display = "inline-block"
+      }
+      if (numStrikes === 2) {
+        cellTwo.style.display = "inline-block"
+      }
+      if (numStrikes === 3) {
+        cellThree.style.display = "inline-block"
+      }
+      if (numStrikes >= maxStrikes) {
+        clearInterval(timer);
+        isBoardLocked = true;
+        messageEl.classList.remove("hidden");
+        messageEl.textContent = "Three Strikes! You Lose!";
+        messageEl.style.color = "rgb(0, 0, 0)";
+        messageEl.style.fontFamily = "Cardo, serif";
+        messageEl.style.fontWeight = "700";
+        messageEl.style.fontStyle = "normal";
+        messageEl.style.fontSize = "30px";
+        gameBoard.innerHTML = "";
+        restartButton.classList.remove("hidden");
+        lostGame.volume = 0.1;
+        lostGame.play();
+        gameMusic.pause();
+      }
+    };
+    handleStrike()
     setTimeout(() => {
       card1.classList.remove("is-flipped");
       card2.classList.remove("is-flipped");
       flippedCard = [];
-      isBoardLocked = false;
+      isBoardLocked = false
     }, 1000);
   }
 };

@@ -34,6 +34,51 @@ header {
   text-align: center;
 }
 
+.container {
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  grid-auto-rows: 0px;
+  position: relative;
+  overflow: hidden;
+  width: 150px;
+  height: 50px;
+  margin: auto;
+  margin-bottom: 0;
+  border: 3px solid black;
+  /* text-align: center; */
+  /* justify-content: center; */
+}
+
+.cell {
+  display: flex;
+  border: 3px solid black;
+  /* align-items: center; */
+  text-align: center;
+  /* line-height: 100px; */
+  justify-content: center;
+  color: rgb(0,0,0);
+
+}
+
+#cell-1 {
+  font-size: 40px;
+  font-weight: 700;
+  display: none;
+}
+
+#cell-2 {
+  font-size: 40px;
+  font-weight: 700;
+  display: none;
+}
+
+#cell-3 {
+  font-size: 40px;
+  font-weight: 700;
+  display: none;
+}
+
 .instructions {
   display: flex;
   color: rgb(1, 1, 1);
@@ -59,7 +104,7 @@ header {
 
 .animated-text {
   color: rgb(231, 43, 10);
-  font-family: "Rubik Gemstones", serif;
+  font-family: "Bangers", serif;
   font-weight: 400;
   font-style: normal;
   position: relative;
@@ -111,6 +156,7 @@ header {
 
 #msg {
   margin: 0 auto;
+  margin-top: 0;
   text-align: center;
   color: rgb(1, 1, 1);
 }
