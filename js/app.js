@@ -41,11 +41,13 @@ const collapsible = document.getElementsByClassName("collapsible-header");
 const instructions = document.querySelector(".instructions");
 const callout = document.querySelector(".callout");
 const restartButton = document.getElementById("restart");
-const strikeBox = document.querySelector(".container")
+const strikeBox = document.querySelector(".container");
 const blinkText = document.getElementById("blinkingText");
 const cellOne = document.getElementById("cell-1");
 const cellTwo = document.getElementById("cell-2");
 const cellThree = document.getElementById("cell-3");
+const cellFour = document.getElementById("cell-4");
+const cellFive = document.getElementById("cell-5");
 
 /*-------------- Functions -------------*/
 
@@ -59,10 +61,12 @@ const init = () => {
   messageEl.classList.add("hidden");
   playButton.classList.add("hidden");
   restartButton.classList.add("hidden");
-  strikeBox.style.display = "grid"
-  cellOne.style.display = "none"
-  cellTwo.style.display = "none"
-  cellThree.style.display = "none"
+  strikeBox.style.display = "grid";
+  cellOne.style.display = "none";
+  cellTwo.style.display = "none";
+  cellThree.style.display = "none";
+  cellFour.style.display = "none";
+  cellFive.style.display = "none";
   render();
 };
 
@@ -142,7 +146,7 @@ const flipAllCards = (duration = 5000) => {
   const cards = document.querySelectorAll(".card");
   cards.forEach((card) => card.classList.add("is-flipped"));
   setTimeout(() => {
-    singleFlip.volume = 0.1;
+    singleFlip.volume = 0.5;
     singleFlip.play();
     isBoardLocked = false;
     cards.forEach((card) => card.classList.remove("is-flipped"));
@@ -167,7 +171,7 @@ const startTimer = () => {
       messageEl.style.fontSize = "30px";
       gameBoard.innerHTML = "";
       restartButton.classList.remove("hidden");
-      lostGame.volume = 0.1;
+      lostGame.volume = 0.5;
       lostGame.play();
       gameMusic.pause();
     }
@@ -183,7 +187,7 @@ const play = () => {
   startTimer();
   init();
   flipAllCards();
-  moveInstructions(); 
+  moveInstructions();
 };
 
 const checkForMatch = () => {
@@ -203,25 +207,31 @@ const checkForMatch = () => {
     messageEl.style.fontWeight = "400";
     messageEl.style.fontStyle = "normal";
     messageEl.style.fontSize = "30px";
-    notMatch.volume = 0.1;
+    notMatch.volume = 0.5;
     notMatch.play();
     const handleStrike = () => {
       numStrikes++;
-      const maxStrikes = 3;
+      const maxStrikes = 5;
       if (numStrikes === 1) {
-        cellOne.style.display = "inline-block"
+        cellOne.style.display = "inline-block";
       }
       if (numStrikes === 2) {
-        cellTwo.style.display = "inline-block"
+        cellTwo.style.display = "inline-block";
       }
       if (numStrikes === 3) {
-        cellThree.style.display = "inline-block"
+        cellThree.style.display = "inline-block";
+      }
+      if (numStrikes === 4) {
+        cellFour.style.display = "inline-block";
+      }
+      if (numStrikes === 5) {
+        cellFive.style.display = "inline-block";
       }
       if (numStrikes >= maxStrikes) {
         clearInterval(timer);
         isBoardLocked = true;
         messageEl.classList.remove("hidden");
-        messageEl.textContent = "Three Strikes! You Lose!";
+        messageEl.textContent = "Five Strikes! You Lose!";
         messageEl.style.color = "rgb(0, 0, 0)";
         messageEl.style.fontFamily = "Cardo, serif";
         messageEl.style.fontWeight = "700";
@@ -229,17 +239,17 @@ const checkForMatch = () => {
         messageEl.style.fontSize = "30px";
         gameBoard.innerHTML = "";
         restartButton.classList.remove("hidden");
-        lostGame.volume = 0.1;
+        lostGame.volume = 0.5;
         lostGame.play();
         gameMusic.pause();
       }
     };
-    handleStrike()
+    handleStrike();
     setTimeout(() => {
       card1.classList.remove("is-flipped");
       card2.classList.remove("is-flipped");
       flippedCard = [];
-      isBoardLocked = false
+      isBoardLocked = false;
     }, 1000);
   }
 };
@@ -255,7 +265,7 @@ const checkForWinner = () => {
     isBoardLocked = false;
     gameBoard.innerHTML = "";
     restartButton.classList.remove("hidden");
-    wonGame.volume = 0.1;
+    wonGame.volume = 0.5;
     wonGame.play();
     gameMusic.pause();
     confetti({
@@ -272,7 +282,7 @@ const checkForWinner = () => {
     messageEl.style.fontWeight = "400";
     messageEl.style.fontStyle = "normal";
     messageEl.style.fontSize = "30px";
-    isAMatch.volume = 0.1;
+    isAMatch.volume = 0.5;
     isAMatch.play();
     isBoardLocked = false;
   }

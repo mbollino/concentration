@@ -36,26 +36,22 @@ header {
 
 .container {
   display: none;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: auto auto;
   grid-auto-rows: 0px;
   position: relative;
   overflow: hidden;
-  width: 150px;
-  height: 50px;
+  width: 175px;
+  height: 55px;
   margin: auto;
   margin-bottom: 0;
   border: 3px solid black;
-  /* text-align: center; */
-  /* justify-content: center; */
 }
 
 .cell {
   display: flex;
   border: 3px solid black;
-  /* align-items: center; */
   text-align: center;
-  /* line-height: 100px; */
   justify-content: center;
   color: rgb(0,0,0);
 
@@ -74,6 +70,18 @@ header {
 }
 
 #cell-3 {
+  font-size: 40px;
+  font-weight: 700;
+  display: none;
+}
+
+#cell-4 {
+  font-size: 40px;
+  font-weight: 700;
+  display: none;
+}
+
+#cell-5 {
   font-size: 40px;
   font-weight: 700;
   display: none;
